@@ -11,6 +11,8 @@ import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 import { setTimeout } from 'timers';
 
+
+
 const store = configureStore();
 console.log("test");
 // store.dispatch(addExpense({description:'Water bill', amount:4500}));
