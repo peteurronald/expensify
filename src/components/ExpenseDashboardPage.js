@@ -6,7 +6,7 @@ import selectExpenses from '../selectors/expenses';
 import selectExpensesTotal  from "../selectors/expenses-total";
 import ExpenseSummary from './ExpenseSummary';
 
-const ExpenseDashboardPage = (props) => {
+export const ExpenseDashboardPage = (props) => {
     const count = props.expenses.length;
     const total =  selectExpensesTotal(props.expenses);
     return (
