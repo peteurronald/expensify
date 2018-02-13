@@ -1,5 +1,5 @@
 
-// EXPENSES REDUCER
+// EXPENSES REDUCER CHANGED
 const expensesReducerDefaultState = [];
 export default (state = expensesReducerDefaultState, action) => {
     switch (action.type){
