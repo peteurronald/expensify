@@ -2,59 +2,61 @@ import * as firebase from 'firebase';
 
 
 const config = {
-    apiKey: "AIzaSyDgF_tW4mw74tDa9gHyy_y_L4s6ZI6wmxw",
-    authDomain: "expensify-d5c85.firebaseapp.com",
-    databaseURL: "https://expensify-d5c85.firebaseio.com",
-    projectId: "expensify-d5c85",
-    storageBucket: "expensify-d5c85.appspot.com",
-    messagingSenderId: "703892276464"
+    apiKey: process.env.FIREBASE_API_KEY,
+    authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+    databaseURL: process.env.FIREBASE_DATABASE_URL,
+    projectId: process.env.FIREBASE_PROJECT_ID,
+    storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID
 };
+
 firebase.initializeApp(config);
 const database = firebase.database();
 
+export {firebase, database as default};
 
 
-const expenses = [{
-    description: ' d1',
-    note: 'n1',
-    amount: 0,
-    createdAt: 0
-},{
-    description: ' d2',
-    note: 'n2',
-    amount: 10,
-    createdAt: 10
-},{
-    description: ' d3',
-    note: 'n3',
-    amount: 20,
-    createdAt: 20
-}];
+// const expenses = [{
+//     description: ' d1',
+//     note: 'n1',
+//     amount: 0,
+//     createdAt: 0
+// },{
+//     description: ' d2',
+//     note: 'n2',
+//     amount: 10,
+//     createdAt: 10
+// },{
+//     description: ' d3',
+//     note: 'n3',
+//     amount: 20,
+//     createdAt: 20
+// }];
 
-database.ref('expenses').on('child_removed',
-    (snap) => {
-        console.log(snap.key,snap.val());
-    }
-);
+// database.ref('expenses').on('child_removed',
+//     (snap) => {
+//         console.log(snap.key,snap.val());
+//     }
+// );
 
-database.ref('expenses').on('child_changed',
-    (snap) => {
-        console.log(snap.key,snap.val());
-    }
-);
+// database.ref('expenses').on('child_changed',
+//     (snap) => {
+//         console.log(snap.key,snap.val());
+//     }
+// );
 
-database.ref('expenses').on('child_added',
-    (snap) => {
-        console.log(snap.key,snap.val());
-    }
-);
+// database.ref('expenses').on('child_added',
+//     (snap) => {
+//         console.log(snap.key,snap.val());
+//     }
+// );
 
-database.ref('expenses').push( {
-    description: expenses[0].description,
-    note: expenses[0].note,
-    amount: expenses[0].amount,
-    createdAt: expenses[0].createdAt,
-});
+// database.ref('expenses').push( {
+//     description: expenses[0].description,
+//     note: expenses[0].note,
+//     amount: expenses[0].amount,
+//     createdAt: expenses[0].createdAt,
+// });
 
 // database.ref('expenses')
 // .once('value')
