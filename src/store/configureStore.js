@@ -3,18 +3,16 @@ import expensesReducer from '../reducers/expenses';
 import filtersReducer from '../reducers/filters';
 import {createLogger } from 'redux-logger';
 import thunk from 'redux-thunk';
+import authReducer  from '../reducers/auth';
 
-// const logger = createLogger({
-//     predicate
-// });
-
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION__COMPOSE__ || compose;
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export default () => {
     const store = createStore(
         combineReducers({
             expenses: expensesReducer,
-            filters: filtersReducer
+            filters: filtersReducer,
+            auth: authReducer
         }),
         composeEnhancers(applyMiddleware(thunk))
     );
