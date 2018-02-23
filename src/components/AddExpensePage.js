@@ -1,22 +1,26 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import ExpenseForm from './ExpenseForm';
-import {startAddExpense} from '../actions/expenses';
-
+import { startAddExpense } from '../actions/expenses';
+import { ContentContainer, SubTitle } from '../styles/styled';
 
 export class AddExpensePage extends React.Component {
-    onSubmit = (expense)=> {
+    onSubmit = (expense) => {
         this.props.startAddExpense(expense);
         this.props.history.push('/');
     };
     render() {
         return (
-            <div>   
-                <h1>Add Expense</h1>
-                <ExpenseForm onSubmit= {this.onSubmit} />
-            </div>   
+            <div>
+                <ContentContainer>
+                    <SubTitle>Add Expense</SubTitle>
+                </ContentContainer>
+                <ContentContainer>
+                    <ExpenseForm onSubmit={this.onSubmit} />
+                </ContentContainer>
+            </div>
         );
-     }
+    }
 }
 
 const mapDispatchToProps = (dispatch) => ({

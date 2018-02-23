@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" >
+        <title>Neataptic</title>
+        <script src="https://wagenaartje.github.io/neataptic/cdn/1.4.7/neataptic.js"></script>
+        <script src="http://code.jquery.com/jquery-1.6.4.min.js" type="text/javascript"></script>
+          
+    
+    </head>
+    <body onload = "run()">
+       <div id="app">hello</div>
+       <!-- <script src="/dist/bundle.js"></script> -->
+
+       <script>
+         async function run() {
+
+         var network = new neataptic.architect.Perceptron(3,4,1);
+
+          // input colum is lwlwlll
+
+          var trainingData = [
+            { input: [0,0,0], output: [0] },
+            { input: [1,0,0], output: [0.1] },
+            { input: [0,1,0], output: [0.3] },
+            { input: [1,1,0], output: [0.4] },
+            { input: [0,0,1], output: [0.6] },
+            { input: [1,0,1], output: [0.7] },
+            { input: [0,1,1], output: [0.9] }, 
+            { input: [1,1,1], output: [1] }    
+          ];
+                   
+          network.train(trainingData, {
+            log: 1500,
+            iterations: 12000,
+            error: 0.01,
+            clear: true,
+            rate: 0.09,
+          });
+
+          
+          //for(var i in trainingData){
+          //  var input = trainingData[i].input;
+            // var output = Math.round(network.activate([input]));
+            // var output = network.activate([input]);
+            // $('html').append('<p>Input: ' + input[0] + ', output: ' + output + '</p>');
+          //}
+          
+          $('html').append('<p>Input:110' + ', output: ' +  Math.round(network.activate([1,0,1]) * 100) / 100 + '</p>');
+          $('html').append('<p>Input: 000' + ', output: ' +  Math.round(network.activate([0,0,0]) * 100) / 100 + '</p>');
+          // $('html').append('<p>Input: 11' + ', output: ' +  network.activate([1,1]) + '</p>');
+          // $('html').append('<p>Input: 01' + ', output: ' +  network.activate([0,1]) + '</p>');
+
+          // var input = output;
+          // $('html').append('<b>Next prediction: ' + Math.round(network.activate([input])) + '</b>');
+
+        
+         }
+        
+        </script>
+
+
+    </body>
+</html>

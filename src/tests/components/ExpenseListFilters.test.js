@@ -37,7 +37,7 @@ test('should render ExpenseListFilters with alt filters correctly', ()=>{
 
 test('should handle text change', ()=>{
     const value = 'New Text';
-    wrapper.find('input').at(0).simulate('change', {
+    wrapper.find('TextInput').at(0).simulate('change', {
         target: {value}
     });
     expect(setTextFilter).toHaveBeenLastCalledWith(value);

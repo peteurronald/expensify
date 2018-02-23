@@ -1,15 +1,37 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {startLogout} from '../actions/auth';
+import styled from "styled-components";
+import {ContentContainer, PageHeader, PageHeaderTitle} from '../styles/styled';
+
+
+const HeaderContent= styled.div`
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 1.2rem 0;
+`;
+
+
+const LogoutButton = styled.button`
+    background: none;
+    color: white;
+    border: 2px solid ${props => props.theme.main};
+`;
+
 
 export const Header = ({startLogout}) => (
-    <header>
-        <h1>Expensify</h1>
-        <NavLink to="/dashboard" activeClassName="is-active" >Dashboard</NavLink>
-        <NavLink to="/create" activeClassName="is-active">Create Expense</NavLink>
-        <button onClick={startLogout}>Logout</button>
-    </header>    
+    <PageHeader>
+        <ContentContainer>
+           <HeaderContent>  
+                 <Link  to="/dashboard"  >
+                   <PageHeaderTitle>Expensify</PageHeaderTitle>   
+                </Link>
+                <LogoutButton onClick={startLogout}>Logout</LogoutButton>
+            </HeaderContent>      
+        </ContentContainer>
+    </PageHeader>    
 );
 
 const mapDispatchToProps = (dispatch) => ({

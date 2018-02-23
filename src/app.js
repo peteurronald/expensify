@@ -12,6 +12,10 @@ import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 import 'react-dates/lib/css/_datepicker.css'
 import {firebase} from './firebase/firebase';
+import {ThemeProvider} from "styled-components"; 
+import {theme} from './styles/styled';
+import LoadingPage from './components/LoadingPage';
+
 
 const store = configureStore();
 // store.dispatch(addExpense({description:'Water bill', amount:4500}));
@@ -27,10 +31,13 @@ const state = store.getState();
 const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
 //console.log(visibleExpenses);
 
+
 const jsx = (
-    <Provider store={store}>
+    <ThemeProvider theme={theme}>
+      <Provider store={store}>
         <AppRouter />
-    </Provider>
+      </Provider>
+    </ThemeProvider>
 );
 
 let hasRendered = false;
@@ -41,7 +48,7 @@ const renderApp= () => {
     } 
 }
 
-ReactDOM.render(<p>loading...</p>, document.getElementById('app'));
+ReactDOM.render(<LoadingPage/>, document.getElementById('app'));
 
 firebase.auth().onAuthStateChanged((user)=> {
     if(user) {
